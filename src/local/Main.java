@@ -6,15 +6,19 @@ import java.util.regex.Pattern;
 
 
 public class Main {
+
     static String testText = "      Знаков препинания: Hello ,;.?! может быть много?!         ";
 
     public static void main(String[] args) {
         searchSymbol();
         System.out.println();
+
         countWords();
         System.out.println();
+
         lastLetters();
         System.out.println();
+
         summariseLetters();
         System.out.println();
     }
@@ -59,28 +63,25 @@ public class Main {
     }
 
     static void summariseLetters() {
-        String[] arr = new String[]{"Два ", "Один "};
-        String simple = "";
-
-        Calendar calendarBefore = Calendar.getInstance();
         long beforeSimple, afterSimple, beforeBuilder, afterBuilder;
-        beforeSimple = calendarBefore.getTimeInMillis();
-        for (int i = 1; i <= 10000; i++) {
-            simple += arr[i % 2];
+        int iteration = 30000;
+        String[] arrayStrings = new String[]{"Два ", "Один "};
+        String simple = "";
+        StringBuilder builder = new StringBuilder();
+
+        beforeSimple = Calendar.getInstance().getTimeInMillis();
+        for (int i = 1; i <= iteration; i++) {
+            simple += arrayStrings[i % arrayStrings.length];
         }
-        Calendar calendarAfter = Calendar.getInstance();
-        afterSimple = calendarAfter.getTimeInMillis();
+        afterSimple = Calendar.getInstance().getTimeInMillis();
         System.out.println(simple);
         System.out.println(afterSimple - beforeSimple);
 
-        StringBuilder builder = new StringBuilder();
-        Calendar calendarBeforeB = Calendar.getInstance();
-        beforeBuilder = calendarBeforeB.getTimeInMillis();
-        for (int i = 1; i <= 10000; i++) {
-            builder.append(arr[i % 2]);
+        beforeBuilder = Calendar.getInstance().getTimeInMillis();
+        for (int i = 1; i <= iteration; i++) {
+            builder.append(arrayStrings[i % arrayStrings.length]);
         }
-        Calendar calendarAfterB = Calendar.getInstance();
-        afterBuilder = calendarAfterB.getTimeInMillis();
+        afterBuilder = Calendar.getInstance().getTimeInMillis();
         System.out.println(builder);
         System.out.println(afterBuilder - beforeBuilder);
     }
